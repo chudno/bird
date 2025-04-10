@@ -1,9 +1,9 @@
 // Константы игры
-const GRAVITY = 0.5;
-const FLAP_FORCE = -10;
-const PIPE_SPEED = 2;
-const PIPE_SPAWN_INTERVAL = 1500; // миллисекунды
-const PIPE_GAP = 150;
+const GRAVITY = 0.35; // Уменьшено с 0.5 для более плавного падения
+const FLAP_FORCE = -8; // Изменено с -10 для более контролируемого прыжка
+const PIPE_SPEED = 1.5; // Уменьшено с 2 для более медленного движения труб
+const PIPE_SPAWN_INTERVAL = 2000; // Увеличено с 1500 мс для большего расстояния между парами труб
+const PIPE_GAP = 200; // Увеличено со 150 для более широкого прохода между трубами
 const PIPE_WIDTH = 80;
 
 // Загрузка изображений
