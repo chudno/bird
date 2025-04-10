@@ -13,24 +13,24 @@ let totalImages = 6; // 1 птица + 2 трубы + 3 фона
 const birdImg = new Image();
 birdImg.onload = imageLoaded;
 birdImg.onerror = imageError;
-birdImg.src = 'img/bird.png';
+birdImg.src = 'img/bird.svg';
 
 const pipeTopImg = new Image();
 pipeTopImg.onload = imageLoaded;
 pipeTopImg.onerror = imageError;
-pipeTopImg.src = 'img/pipe-top.png';
+pipeTopImg.src = 'img/pipe-top.svg';
 
 const pipeBottomImg = new Image();
 pipeBottomImg.onload = imageLoaded;
 pipeBottomImg.onerror = imageError;
-pipeBottomImg.src = 'img/pipe-bottom.png';
+pipeBottomImg.src = 'img/pipe-bottom.svg';
 
 const bgLayers = [];
 for (let i = 1; i <= 3; i++) {
     const img = new Image();
     img.onload = imageLoaded;
     img.onerror = imageError;
-    img.src = `img/bg-layer-${i}.png`;
+    img.src = `img/bg-layer-${i}.svg`;
     bgLayers.push(img);
 }
 
@@ -65,7 +65,7 @@ let score = 0;
 let gameStarted = false;
 let gameOver = false;
 let lastPipeSpawn = 0;
-let customBirdImage = null;
+
 let bgPositions = [0, 0, 0]; // Позиции для параллакс-эффекта
 
 // Класс для птицы
@@ -110,9 +110,7 @@ class Bird {
         ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
         ctx.rotate(this.rotation);
 
-        if (customBirdImage && customBirdImage.complete && customBirdImage.naturalWidth !== 0) {
-            ctx.drawImage(customBirdImage, -this.width / 2, -this.height / 2, this.width, this.height);
-        } else if (birdImg.complete && birdImg.naturalWidth !== 0) {
+        if (birdImg.complete && birdImg.naturalWidth !== 0) {
             ctx.drawImage(birdImg, -this.width / 2, -this.height / 2, this.width, this.height);
         }
 
@@ -343,6 +341,12 @@ function init() {
     startButton.disabled = true;
     startButton.textContent = 'Загрузка ресурсов...';
     
+    // Проверяем, загружены ли уже все изображения
+    if (imagesLoaded >= totalImages) {
+        startButton.disabled = false;
+        startButton.textContent = 'Начать игру';
+    }
+    
     startButton.addEventListener('click', () => {
         if (imagesLoaded >= totalImages) {
             gameStarted = true;
@@ -357,26 +361,7 @@ function init() {
         gameStarted = true;
     });
 
-    // Обработчик для загрузки пользовательского изображения
-    document.getElementById('custom-image-input').addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                customBirdImage = new Image();
-                customBirdImage.onload = () => {
-                    console.log('Пользовательское изображение загружено');
-                };
-                customBirdImage.onerror = () => {
-                    console.error('Ошибка загрузки пользовательского изображения');
-                    customBirdImage = null; // Сбрасываем на null в случае ошибки
-                    alert('Не удалось загрузить изображение. Пожалуйста, попробуйте другой файл.');
-                };
-                customBirdImage.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+
 
     // Запускаем игровой цикл только после проверки загрузки изображений
     if (imagesLoaded >= totalImages) {
