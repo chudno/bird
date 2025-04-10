@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 300" width="80" height="300">
+  <!-- Верхний пенис -->
+  <defs>
+    <linearGradient id="pinkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#FF9EB5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF6B99;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Основание -->
+  <rect x="10" y="0" width="60" height="220" fill="url(#pinkGradient)" rx="5" ry="5" stroke="#FF5588" stroke-width="2"/>
+  
+  <!-- Головка -->
+  <ellipse cx="40" cy="250" rx="35" ry="30" fill="#FF7BA9" stroke="#FF5588" stroke-width="2"/>
+  
+  <!-- Детали головки -->
+  <path d="M40,220 C10,220 10,250 40,280 C70,250 70,220 40,220 Z" fill="#FF9EB5" stroke="#FF5588" stroke-width="2"/>
+  
+  <!-- Прожилки -->
+  <path d="M20,50 C30,60 50,60 60,50" fill="none" stroke="#FF5588" stroke-width="2" opacity="0.7"/>
+  <path d="M20,100 C30,110 50,110 60,100" fill="none" stroke="#FF5588" stroke-width="2" opacity="0.7"/>
+  <path d="M20,150 C30,160 50,160 60,150" fill="none" stroke="#FF5588" stroke-width="2" opacity="0.7"/>
+</svg>

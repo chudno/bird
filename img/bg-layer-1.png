@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" width="320" height="480">
+  <!-- Задний фон (самый дальний слой) -->
+  <rect width="320" height="480" fill="#87CEEB"/>
+  
+  <!-- Облака (дальние) -->
+  <ellipse cx="50" cy="100" rx="25" ry="15" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="70" cy="105" rx="20" ry="10" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="30" cy="105" rx="15" ry="8" fill="#FFFFFF" opacity="0.7"/>
+  
+  <ellipse cx="250" cy="70" rx="30" ry="18" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="270" cy="75" rx="25" ry="15" fill="#FFFFFF" opacity="0.7"/>
+  <ellipse cx="230" cy="75" rx="20" ry="12" fill="#FFFFFF" opacity="0.7"/>
+  
+  <ellipse cx="150" cy="150" rx="35" ry="20" fill="#FFFFFF" opacity="0.6"/>
+  <ellipse cx="170" cy="155" rx="30" ry="18" fill="#FFFFFF" opacity="0.6"/>
+  <ellipse cx="130" cy="155" rx="25" ry="15" fill="#FFFFFF" opacity="0.6"/>
+</svg>

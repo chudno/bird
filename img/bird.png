@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 35" width="50" height="35">
+  <!-- Тело птицы -->
+  <ellipse cx="25" cy="17.5" rx="20" ry="15" fill="#FFD700" stroke="#000" stroke-width="1.5"/>
+  
+  <!-- Глаз -->
+  <circle cx="35" cy="12" r="4" fill="white" stroke="#000" stroke-width="1"/>
+  <circle cx="36" cy="11" r="2" fill="black"/>
+  
+  <!-- Клюв -->
+  <path d="M40,17 L50,15 L40,20 Z" fill="#FF6600" stroke="#000" stroke-width="1"/>
+  
+  <!-- Крыло -->
+  <path d="M20,10 Q15,5 10,15 Q15,20 25,17 Z" fill="#FFA500" stroke="#000" stroke-width="1"/>
+</svg>

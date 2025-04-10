@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" width="320" height="480">
+  <!-- Средний слой (горы и холмы) -->
+  <rect width="320" height="480" fill="transparent"/>
+  
+  <!-- Горы на заднем плане -->
+  <path d="M0,250 L60,180 L120,230 L180,150 L240,200 L320,170 L320,480 L0,480 Z" fill="#6B8E23" opacity="0.8"/>
+  
+  <!-- Холмы на среднем плане -->
+  <path d="M0,300 Q40,270 80,290 Q120,310 160,280 Q200,260 240,290 Q280,310 320,280 L320,480 L0,480 Z" fill="#8FBC8F" opacity="0.9"/>
+  
+  <!-- Облака (средние) -->
+  <ellipse cx="100" cy="120" rx="20" ry="12" fill="#FFFFFF" opacity="0.8"/>
+  <ellipse cx="120" cy="125" rx="15" ry="10" fill="#FFFFFF" opacity="0.8"/>
+  <ellipse cx="80" cy="125" rx="12" ry="8" fill="#FFFFFF" opacity="0.8"/>
+  
+  <ellipse cx="220" cy="90" rx="25" ry="15" fill="#FFFFFF" opacity="0.8"/>
+  <ellipse cx="240" cy="95" rx="20" ry="12" fill="#FFFFFF" opacity="0.8"/>
+  <ellipse cx="200" cy="95" rx="15" ry="10" fill="#FFFFFF" opacity="0.8"/>
+</svg>

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 480" width="320" height="480">
+  <!-- Передний слой (деревья и трава) -->
+  <rect width="320" height="480" fill="transparent"/>
+  
+  <!-- Земля -->
+  <rect x="0" y="430" width="320" height="50" fill="#8B4513"/>
+  
+  <!-- Трава -->
+  <rect x="0" y="430" width="320" height="10" fill="#556B2F"/>
+  
+  <!-- Деревья -->
+  <g transform="translate(40, 380)">
+    <rect x="-5" y="0" width="10" height="50" fill="#8B4513"/>
+    <ellipse cx="0" cy="-20" rx="20" ry="30" fill="#228B22"/>
+  </g>
+  
+  <g transform="translate(120, 390)">
+    <rect x="-6" y="0" width="12" height="40" fill="#8B4513"/>
+    <ellipse cx="0" cy="-25" rx="25" ry="35" fill="#228B22"/>
+  </g>
+  
+  <g transform="translate(200, 385)">
+    <rect x="-5" y="0" width="10" height="45" fill="#8B4513"/>
+    <ellipse cx="0" cy="-20" rx="18" ry="28" fill="#228B22"/>
+  </g>
+  
+  <g transform="translate(280, 395)">
+    <rect x="-4" y="0" width="8" height="35" fill="#8B4513"/>
+    <ellipse cx="0" cy="-15" rx="15" ry="25" fill="#228B22"/>
+  </g>
+  
+  <!-- Кусты -->
+  <ellipse cx="20" cy="435" rx="15" ry="10" fill="#3CB371"/>
+  <ellipse cx="80" cy="435" rx="12" ry="8" fill="#3CB371"/>
+  <ellipse cx="160" cy="435" rx="18" ry="12" fill="#3CB371"/>
+  <ellipse cx="240" cy="435" rx="14" ry="9" fill="#3CB371"/>
+  <ellipse cx="300" cy="435" rx="16" ry="11" fill="#3CB371"/>
+</svg>
