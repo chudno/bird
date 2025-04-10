@@ -357,6 +357,8 @@ function init() {
         if (imagesLoaded >= totalImages) {
             gameStarted = true;
             document.getElementById('start-screen').style.display = 'none';
+            // Запускаем аудио после пользовательского взаимодействия
+            gameAudio.play();
         } else {
             alert('Пожалуйста, дождитесь загрузки всех ресурсов');
         }
@@ -368,6 +370,29 @@ function init() {
     });
 
 
+
+    // Инициализация аудио
+    const gameAudio = new Audio('audio/hero.mp3');
+    gameAudio.loop = true;
+    let isMuted = false;
+    
+    // Добавляем обработчик кнопки звука
+    document.getElementById('mute-button').addEventListener('click', () => {
+        isMuted = !isMuted;
+        gameAudio.muted = isMuted;
+        document.getElementById('mute-button').textContent = isMuted ? '🔇' : '🔊';
+    });
+    
+    // Управление аудио при событиях игры
+    // Перенесено в обработчик кнопки старта
+    
+    // При Game Over
+    gameAudio.pause();
+    gameAudio.currentTime = 0;
+    
+    // В функции resetGame
+    gameAudio.pause();
+    gameAudio.currentTime = 0;
 
     // Запускаем игровой цикл только после проверки загрузки изображений
     if (imagesLoaded >= totalImages) {

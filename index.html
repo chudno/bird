@@ -79,12 +79,26 @@
         #custom-image-container {
             margin-top: 20px;
         }
+        
+        /* Стили для кнопки звука */
+        #mute-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 20;
+            padding: 5px 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
     <h1>Dildo Bird</h1>
     
     <div id="game-container">
+        <button id="mute-button">🔊</button>
         <canvas id="game-canvas" width="320" height="480"></canvas>
         
         <div id="start-screen">
