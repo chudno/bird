@@ -118,11 +118,13 @@ class Bird {
     }
 
     getBounds() {
+        // Уменьшаем хитбокс птицы, добавляя отступы со всех сторон
+        const padding = 8; // Увеличено с 5
         return {
-            x: this.x,
-            y: this.y,
-            width: this.width,
-            height: this.height
+            x: this.x + padding,
+            y: this.y + padding,
+            width: this.width - padding * 2,
+            height: this.height - padding * 2
         };
     }
 }
@@ -158,19 +160,23 @@ class Pipe {
     }
 
     getBounds() {
+        // Уменьшаем хитбокс трубы, добавляя отступы
+        const paddingX = 15; // Увеличено с 10
+        const paddingY = 10;  // Увеличено с 5
+        
         if (this.isTop) {
             return {
-                x: this.x,
-                y: 0,
-                width: this.width,
-                height: this.height
+                x: this.x + paddingX,
+                y: 0 + paddingY,
+                width: this.width - paddingX * 2,
+                height: this.height - paddingY
             };
         } else {
             return {
-                x: this.x,
-                y: canvas.height - this.height,
-                width: this.width,
-                height: this.height
+                x: this.x + paddingX,
+                y: (canvas.height - this.height) + paddingY,
+                width: this.width - paddingX * 2,
+                height: this.height - paddingY
             };
         }
     }
