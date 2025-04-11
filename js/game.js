@@ -1,7 +1,7 @@
 // Константы игры
-const GRAVITY = 0.35; // Уменьшено с 0.5 для более плавного падения
-const FLAP_FORCE = -8; // Изменено с -10 для более контролируемого прыжка
-const PIPE_SPEED = 1.5; // Уменьшено с 2 для более медленного движения труб
+const GRAVITY = 1200; // Значительно увеличено для еще более быстрого падения
+const FLAP_FORCE = -500; // Скорректировано для более резкого, но контролируемого взлета
+const PIPE_SPEED = 90; // 1.5 * 60 для независимости от FPS
 const PIPE_SPAWN_INTERVAL = 2000; // Увеличено с 1500 мс для большего расстояния между парами труб
 const PIPE_GAP = 200; // Увеличено со 150 для более широкого прохода между трубами
 const PIPE_WIDTH = 80;
@@ -64,7 +64,8 @@ let pipes = [];
 let score = 0;
 let gameStarted = false;
 let gameOver = false;
-let lastPipeSpawn = 0;
+let lastFrameTime = 0;
+let pipeSpawnTimer = 0;
 
 let bgPositions = [0, 0, 0]; // Позиции для параллакс-эффекта
 
@@ -79,10 +80,10 @@ class Bird {
         this.rotation = 0;
     }
 
-    update() {
-        // Применяем гравитацию
-        this.velocity += GRAVITY;
-        this.y += this.velocity;
+    update(deltaTime) {
+        // Применяем гравитацию с учетом времени
+        this.velocity += GRAVITY * deltaTime;
+        this.y += this.velocity * deltaTime;
 
         // Обновляем угол поворота птицы в зависимости от скорости
         this.rotation = Math.min(Math.PI / 4, Math.max(-Math.PI / 4, this.velocity * 0.1));
@@ -139,8 +140,8 @@ class Pipe {
         this.counted = false;
     }
 
-    update() {
-        this.x -= PIPE_SPEED;
+    update(deltaTime) {
+        this.x -= PIPE_SPEED * deltaTime;
     }
 
     draw() {
@@ -221,26 +222,22 @@ function checkCollisions() {
 }
 
 // Функция для отрисовки фона с параллакс-эффектом
-function drawBackground() {
+function drawBackground(deltaTime) {
     // Рисуем слои фона с разной скоростью для эффекта параллакса
     for (let i = 0; i < bgLayers.length; i++) {
-        // Проверяем, что изображение полностью загружено перед отрисовкой
-        if (!bgLayers[i].complete || bgLayers[i].naturalWidth === 0) {
-            continue; // Пропускаем отрисовку этого слоя, если изображение не загружено
-        }
+        // Проверяем загрузку изображения
+        if (!bgLayers[i].complete || bgLayers[i].naturalWidth === 0) continue;
         
-        // Скорость движения зависит от слоя (дальние слои двигаются медленнее)
-        const speed = (i + 1) * 0.5;
+        // Рассчитываем скорость с учетом времени кадра
+        const speed = (i + 1) * 30; // 0.5 * 60 для перевода в пиксели/сек
         
         // Обновляем позицию слоя
-        bgPositions[i] -= speed;
+        bgPositions[i] -= speed * deltaTime;
         
-        // Если слой полностью ушел за пределы экрана, возвращаем его в начало
-        if (bgPositions[i] <= -canvas.width) {
-            bgPositions[i] = 0;
-        }
+        // Сброс позиции при выходе за границы
+        if (bgPositions[i] <= -canvas.width) bgPositions[i] = 0;
         
-        // Рисуем два экземпляра слоя для бесшовного перехода
+        // Отрисовка двух экземпляров слоя
         ctx.drawImage(bgLayers[i], bgPositions[i], 0, canvas.width, canvas.height);
         ctx.drawImage(bgLayers[i], bgPositions[i] + canvas.width, 0, canvas.width, canvas.height);
     }
@@ -279,27 +276,23 @@ function resetGame() {
 
 // Основной игровой цикл
 function gameLoop(timestamp) {
-    // Очищаем холст
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const deltaTime = (timestamp - lastFrameTime) / 1000;
+    lastFrameTime = timestamp;
 
-    // Рисуем фон с параллакс-эффектом
-    drawBackground();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBackground(deltaTime);
 
     if (gameStarted && !gameOver) {
-        // Обновляем птицу
-        bird.update();
+        bird.update(deltaTime);
 
-        // Создаем новые препятствия через определенные интервалы
-        if (timestamp - lastPipeSpawn > PIPE_SPAWN_INTERVAL) {
+        pipeSpawnTimer += deltaTime;
+        if (pipeSpawnTimer >= PIPE_SPAWN_INTERVAL / 1000) {
             spawnPipes();
-            lastPipeSpawn = timestamp;
+            pipeSpawnTimer = 0;
         }
 
-        // Обновляем и удаляем препятствия
         pipes = pipes.filter(pipe => !pipe.isOffScreen());
-        pipes.forEach(pipe => pipe.update());
-
-        // Проверяем столкновения
+        pipes.forEach(pipe => pipe.update(deltaTime));
         checkCollisions();
     }
 
